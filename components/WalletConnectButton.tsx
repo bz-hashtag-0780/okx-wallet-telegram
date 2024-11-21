@@ -118,12 +118,28 @@ const WalletConnectButton = () => {
 			{connected ? (
 				<div>
 					<p>Connected: {address}</p>
-					<button onClick={handleDisconnect}>
+					<button
+						onClick={handleDisconnect}
+						className="button button-disconnect"
+					>
 						Disconnect Wallet
 					</button>
 				</div>
 			) : (
-				<button onClick={handleConnect}>Connect Wallet</button>
+				<div>
+					<button
+						onClick={handleConnect}
+						className="button button-connect"
+					>
+						Connect Wallet
+					</button>
+					<button
+						onClick={handleDisconnect}
+						className="button button-disconnect"
+					>
+						Disconnect Wallet
+					</button>
+				</div>
 			)}
 		</div>
 	);
