@@ -60,7 +60,6 @@ const WalletConnectButton = () => {
 		}
 	};
 
-	// Add a custom Ethereum chain (Polygon Mumbai Testnet)
 	const addCustomChain = async () => {
 		try {
 			if (!okxUI) {
