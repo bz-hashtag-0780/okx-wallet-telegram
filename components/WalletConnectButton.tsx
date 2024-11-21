@@ -45,6 +45,11 @@ const WalletConnectButton = () => {
 						defaultChain: '1',
 					},
 				},
+				optionalNamespaces: {
+					eip155: {
+						chains: ['eip155:747'], // Flow EVM
+					},
+				},
 			});
 
 			const accounts = session?.accounts || [];
@@ -52,7 +57,7 @@ const WalletConnectButton = () => {
 				setAddress(accounts[0]);
 				setConnected(true);
 
-				// Automatically add the custom chain
+				// Automatically add the custom Flow chain
 				await addCustomChain();
 			}
 		} catch (error) {
@@ -60,6 +65,7 @@ const WalletConnectButton = () => {
 		}
 	};
 
+	// Add Flow EVM Chain
 	const addCustomChain = async () => {
 		try {
 			if (!okxUI) {
@@ -71,7 +77,7 @@ const WalletConnectButton = () => {
 				method: 'wallet_addEthereumChain',
 				params: [
 					{
-						chainId: '747', // Hexadecimal for 747 - 0x2EB
+						chainId: '747',
 						chainName: 'Flow EVM',
 						nativeCurrency: {
 							name: 'Flow',
@@ -84,9 +90,26 @@ const WalletConnectButton = () => {
 				],
 			});
 
-			console.log('Custom chain added successfully!');
+			console.log('Flow EVM chain added successfully!');
 		} catch (error) {
 			console.error('Error adding custom chain:', error);
+		}
+	};
+
+	// Handle wallet disconnection
+	const handleDisconnect = async () => {
+		if (!okxUI) {
+			console.error('OKX UI is not initialized!');
+			return;
+		}
+
+		try {
+			await okxUI.disconnect();
+			setAddress(null);
+			setConnected(false);
+			console.log('Wallet disconnected successfully!');
+		} catch (error) {
+			console.error('Error disconnecting wallet:', error);
 		}
 	};
 
@@ -95,6 +118,9 @@ const WalletConnectButton = () => {
 			{connected ? (
 				<div>
 					<p>Connected: {address}</p>
+					<button onClick={handleDisconnect}>
+						Disconnect Wallet
+					</button>
 				</div>
 			) : (
 				<button onClick={handleConnect}>Connect Wallet</button>
