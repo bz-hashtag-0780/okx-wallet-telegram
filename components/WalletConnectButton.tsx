@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { OKXUniversalConnectUI, THEME } from '@okxconnect/ui';
 
-const WalletConnectButton = () => {
+const Home = () => {
 	const [connected, setConnected] = useState(false);
 	const [address, setAddress] = useState<string | null>(null);
 	const [okxUI, setOkxUI] = useState<any>(null);
@@ -115,35 +115,35 @@ const WalletConnectButton = () => {
 	};
 
 	return (
-		<div>
-			{address ? (
-				<div>
-					<p>Connected: {address}</p>
-					<button
-						onClick={handleDisconnect}
-						className="button button-disconnect"
-					>
-						Disconnect Wallet
-					</button>
-				</div>
-			) : (
-				<div>
-					<button
-						onClick={handleConnect}
-						className="button button-connect"
-					>
-						Connect Wallet
-					</button>
-					<button
-						onClick={handleDisconnect}
-						className="button button-disconnect"
-					>
-						Disconnect Wallet
-					</button>
-				</div>
-			)}
+		<div style={{ padding: '20px' }}>
+			<h1>OKX Wallet Integration</h1>
+			<p>
+				Connect your OKX wallet to add the Flow EVM chain automatically.
+			</p>
+			<div>
+				{address ? (
+					<div>
+						<p>Connected: {address}</p>
+						<button
+							onClick={handleDisconnect}
+							className="button button-disconnect"
+						>
+							Disconnect Wallet
+						</button>
+					</div>
+				) : (
+					<div>
+						<button
+							onClick={handleConnect}
+							className="button button-connect"
+						>
+							Connect Wallet
+						</button>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
 
-export default WalletConnectButton;
+export default Home;
