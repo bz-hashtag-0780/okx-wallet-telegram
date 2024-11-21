@@ -1,13 +1,11 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import '../styles/globals.css';
+import { AuthContextProvider } from '../context/AuthContextProvider';
+import type { AppProps } from 'next/app';
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body className="antialiased">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+export default function App({ Component, pageProps }: AppProps) {
+	return (
+		<AuthContextProvider>
+			<Component {...pageProps} />
+		</AuthContextProvider>
+	);
 }
