@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import { OKXUniversalConnectUI, THEME } from '@okxconnect/ui';
@@ -115,7 +116,7 @@ const WalletConnectButton = () => {
 
 	return (
 		<div>
-			{connected ? (
+			{address ? (
 				<div>
 					<p>Connected: {address}</p>
 					<button
