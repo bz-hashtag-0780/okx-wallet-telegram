@@ -1,11 +1,11 @@
 import '../styles/globals.css';
+import { AuthContextProvider } from '../context/AuthContextProvider';
 import type { AppProps } from 'next/app';
-import { OKXProvider } from '../context/OKXProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<OKXProvider>
+		<AuthContextProvider>
 			<Component {...pageProps} />
-		</OKXProvider>
+		</AuthContextProvider>
 	);
 }
